@@ -6,3 +6,19 @@ require "../config/application"
 
 # Example:
 # User.create(name: "example", email: "ex@mple.com")
+
+User.create(
+  name: "admin",
+  email: "test@email.org",
+  phone: 423,
+  approved: 1,
+  role: 1,
+  password: "testtest",
+)
+
+Ticket.create(
+  title: "TEST",
+  desc: "test ticket",
+  urgency: 2,
+  solved: 0,
+)

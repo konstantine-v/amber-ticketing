@@ -7,4 +7,7 @@ class Ticket < Granite::Base
   column desc : String?
   column solved : Int64?
   column urgency : Int64?
+  timestamps
+
+  belongs_to :user
 end

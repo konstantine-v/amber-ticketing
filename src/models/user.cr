@@ -12,6 +12,9 @@ class User < Granite::Base
   column name : String?
   column phone : String?
   column company : String?
+  column approved : Int32?
+
+  has_many :tickets
 
   validate :name, "is required", ->(user : User) do
     (name = user.name) ? !name.empty? : false
@@ -23,6 +26,14 @@ class User < Granite::Base
 
   validate :company, "is required", ->(user : User) do
     (company = user.company) ? !company.empty? : false
+  end
+
+  validate :approved, "is required", ->(user : User) do
+    (approved = user.approved) ? !approved.nil? : false
+  end
+
+  validate :email, "is required", ->(user : User) do
+    (email = user.email) ? !email.empty? : false
   end
 
   validate :email, "is required", ->(user : User) do
@@ -57,10 +68,6 @@ class User < Granite::Base
 
   def authenticate(password : String)
     (bcrypt_pass = self.password) ? bcrypt_pass.verify(password) : false
-  end
-
-  def role
-    role = 0
   end
 
   private getter new_password : String?

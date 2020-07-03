@@ -9,7 +9,7 @@ class TicketController < ApplicationController
     tickets = Ticket.all
     render "index.slang"
     #if admin show all
-    #if current_user show ticets related to current user
+    #if current_user show tickets related to current user
   end
 
   def show
@@ -51,10 +51,11 @@ class TicketController < ApplicationController
 
   private def ticket_params
     params.validation do
-      required :title
-      required :desc
-      required :solved
-      required :urgency
+      required(:title){|f| !f.nil? && !f.empty? }
+      required(:desc){|f| !f.nil? && !f.empty? }
+      required(:solved){|f| !f.nil? && !f.empty? }
+      required(:urgency){|f| !f.nil? && !f.empty? }
+      required(:user_id){|f| !f.nil? && !f.empty? }
     end
   end
 

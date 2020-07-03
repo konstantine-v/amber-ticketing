@@ -23,6 +23,8 @@ class UserController < ApplicationController
     user = User.new user_params.validate!
     pass = user_params.validate!["password"]
     user.password = pass if pass
+    user.role = 0
+    user.approved = 0
 
     if user.save
       session[:user_id] = user.id
@@ -56,6 +58,7 @@ class UserController < ApplicationController
       required :password
       required :name
       required :company
+      optional :approved
       optional :role
       optional :phone
     end

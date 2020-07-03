@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    image: amber-ticket-app
+    command: amber watch
+    environment:
+      DATABASE_URL: sqlite3:./db/amber_ticket_app_development.db
+    ports:
+      - 3000:3000
+    links:
+      - db
+    volumes:
+    - .:/app
+    - nodes:/app/node_modules
+    - shards:/app/lib
+
+  migrate:
+    build: .
+    image: amber-ticket-app
+    command: bash -c 'amber db migrate seed'
+    environment:
+      DATABASE_URL: sqlite3:./db/amber_ticket_app_development.db
+    volumes:
+      - .:/app
+    links:
+      - db
+
+  db:
+    image: amber-ticket-app
+    command: 'bash -c "ls > /dev/null"'
+    volumes:
+    - db:/app/local/db
+
+volumes:
+  db:
+  nodes:
+  shards:

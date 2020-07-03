@@ -2,7 +2,7 @@
 
 [![Amber Framework](https://img.shields.io/badge/using-amber_framework-orange.svg)](https://amberframework.org)
 
-This is a project written using [Amber](https://amberframework.org). Enjoy!
+This is a simple ticketing application meant for use with customers to communicate issues with whomever is admin for the site. The main goal for this application is to be lightweight and to be fast to both deploy and run.
 
 ## Getting Started
 
@@ -48,3 +48,23 @@ crystal spec
 ## Contributors
 
 - [@materialfuture](https://git.materialfuture.net/MaterialFuture) Konstantine - creator, maintainer
+
+## Goals
+- Custom CSS (No Framework)
+- Restrict views based on roles
+- Tie tickets to users
+- Add active tickets to accounts
+- Separate views for tickets
+  - All tickets - admin
+  - All Active tickets - admin
+  - All Completed Tickets - admin
+  - current_user tickets
+- Users must be approved by admin
+  - User signs up
+  - Admin gets email of new user
+  - Admin sees on dashboard the list of unapproved users and can take actions
+- Email system to let admins and users get updates on their tickets
+  - Emails on ticket status updates along with new comments
+- Ticket features
+  - Comments for tickets
+  - File uploads for tickets

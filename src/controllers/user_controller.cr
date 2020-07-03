@@ -6,7 +6,8 @@ class UserController < ApplicationController
   end
 
   def show
-    render("show.slang")
+    render("show.slang") if (user = current_user)
+    #if user role is admin
   end
 
   def new
@@ -14,7 +15,8 @@ class UserController < ApplicationController
   end
 
   def edit
-    render("edit.slang")
+    render("edit.slang") if (user = current_user)
+    #if user role is admin
   end
 
   def create
@@ -33,6 +35,8 @@ class UserController < ApplicationController
 
   def update
     user.set_attributes user_params.validate!
+    pass = user_params.validate!["password"]
+    user.password = pass if pass
     if user.save
       redirect_to "/", flash: {"success" => "User has been updated."}
     else

@@ -4,6 +4,7 @@ CREATE TABLE users (
   email VARCHAR NOT NULL,
   name VARCHAR,
   role INTEGER,
+  approved INTEGER,
   phone VARCHAR NOT NULL,
   company VARCHAR NOT NULL,
   hashed_password VARCHAR NOT NULL,

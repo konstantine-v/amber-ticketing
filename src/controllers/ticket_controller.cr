@@ -8,6 +8,8 @@ class TicketController < ApplicationController
   def index
     tickets = Ticket.all
     render "index.slang"
+    #if admin show all
+    #if current_user show ticets related to current user
   end
 
   def show

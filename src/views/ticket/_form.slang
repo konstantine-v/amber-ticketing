@@ -1,5 +1,3 @@
-h1 Edit Ticket ##{ticket.id.to_s}
-
 - if ticket.errors
   ul.errors
     - ticket.errors.each do |error|
@@ -13,7 +11,7 @@ h1 Edit Ticket ##{ticket.id.to_s}
     == text_area(name: "desc", content: ticket.desc, placeholder: "Desc", class: "form-control", size: "30x10")
   .form-group
     label Status
-    == select_field(name: "solved", collection: [[0, "In Progress"], [1, "Solved"]], selected: ticket.solved)
+    == select_field(name: "solved", collection: [[0, "Waiting"], [1, "In Progress"], [2, "Resolved"]], selected: ticket.solved)
   .form-group
     label Urgency
     == select_field(name: "urgency", collection: [[0,"Not Urgent"],[1, "Level 1"], [2, "Level 2"]], selected: ticket.urgency)

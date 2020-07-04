@@ -8,8 +8,6 @@ class TicketController < ApplicationController
   def index
     tickets = Ticket.all
     render "index.slang"
-    #if admin show all
-    #if current_user show tickets related to current user
   end
 
   def show
@@ -26,6 +24,10 @@ class TicketController < ApplicationController
 
   def create
     ticket = Ticket.new ticket_params.validate!
+    if (current_user = context.current_user)
+      ticket.user_id = current_user.id
+    end
+    ticket.solved = 0 #change from solved to status
     if ticket.save
       redirect_to action: :index, flash: {"success" => "Ticket has been created."}
     else
@@ -53,9 +55,9 @@ class TicketController < ApplicationController
     params.validation do
       required(:title){|f| !f.nil? && !f.empty? }
       required(:desc){|f| !f.nil? && !f.empty? }
-      required(:solved){|f| !f.nil? && !f.empty? }
       required(:urgency){|f| !f.nil? && !f.empty? }
-      required(:user_id){|f| !f.nil? && !f.empty? }
+      optional :solved
+      optional :user_id
     end
   end
 

@@ -3,9 +3,9 @@ CREATE TABLE tickets (
   id INTEGER NOT NULL PRIMARY KEY,
   title VARCHAR,
   desc TEXT,
-  urgency INT,
-  solved INT,
-  user_id INTEGER,
+  urgency INT NOT NULL,
+  solved INT NOT NULL,
+  user_id INTEGER NOT NULL,
   created_at TIMESTAMP,
   updated_at TIMESTAMP
 );

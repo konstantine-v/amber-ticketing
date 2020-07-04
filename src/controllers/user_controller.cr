@@ -25,7 +25,6 @@ class UserController < ApplicationController
     user.password = pass if pass
     user.role = 0
     user.approved = 0
-
     if user.save
       session[:user_id] = user.id
       redirect_to "/", flash: {"success" => "Created User successfully."}

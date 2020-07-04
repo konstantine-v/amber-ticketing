@@ -1,11 +1,9 @@
 h1 Sign Up
-
 - if user
   - if user.errors
     ul.errors
     - user.errors.each do |error|
       li = error.to_s
-      
 form action="/registration" method="post"
   == csrf_tag
   .form-group

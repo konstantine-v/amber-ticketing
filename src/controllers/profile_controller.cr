@@ -1,4 +1,5 @@
-class UserController < ApplicationController
+
+class ProfileController < ApplicationController
   getter user = User.new
 
   before_action do
@@ -42,7 +43,7 @@ class UserController < ApplicationController
     pass = user_params.validate!["password"]
     user.password = pass if pass
     if user.save
-      redirect_to action: :index, flash: {"success" => "User has been updated."}
+      redirect_to action: :show, flash: {"success" => "User has been updated."}
     else
       flash[:danger] = "Could not update User!"
       render "edit.slang"
@@ -67,6 +68,7 @@ class UserController < ApplicationController
   end
 
   private def set_user
-    @user = User.find! params[:id]
+    @user = current_user.not_nil!
   end
+
 end

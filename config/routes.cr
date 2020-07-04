@@ -36,8 +36,6 @@ Amber::Server.configure do
   routes :web do
     get "/", HomeController, :index
 
-    resources "tickets", TicketController
-
     get "/signin", SessionController, :new
     post "/session", SessionController, :create
     get "/signup", UserController, :new
@@ -45,18 +43,19 @@ Amber::Server.configure do
   end
 
   routes :auth do
-    get "/profile", UserController, :show
-    get "/profile/edit", UserController, :edit
-    patch "/profile", UserController, :update
+    get "/profile", ProfileController, :show
+    get "/profile/edit", ProfileController, :edit
+    patch "/profile", ProfileController, :update
     get "/signout", SessionController, :delete
+
+    resources "tickets", TicketController
+    resources "users", UserController
   end
 
-  routes :api do
+  routes :admin do
   end
 
   routes :static do
-    # Each route is defined as follow
-    # verb resource : String, controller : Symbol, action : Symbol
     get "/*", Amber::Controller::Static, :index
   end
 end

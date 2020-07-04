@@ -5,8 +5,8 @@ h1 Edit Profile
   - user.errors.each do |error|
     li = error.to_s
 
-== link_to("Back To Profile", "/users/#{user.id}", class: "btn btn-light btn-sm p-1 mb-3")
-== form(action: "/users/#{user.id}", method: :patch) do
+== link_to("Back To Profile", "/profile", class: "btn btn-light btn-sm p-1 mb-3")
+== form(action: "/profile", method: :patch) do
   == csrf_tag
   .form-group
     input.form-control type="email" name="email" placeholder="Email" value="#{user.email}"

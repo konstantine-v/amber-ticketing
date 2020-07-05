@@ -8,7 +8,7 @@ class TicketController < ApplicationController
   def index
     if (current_user = context.current_user)
       if current_user.role == 2
-        tickets = Ticket.all
+        tickets = Ticket.order(solved: :asc, created_at: :desc)
         render "index.slang"
       else
         # tickets = Ticket.all

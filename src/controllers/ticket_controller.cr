@@ -6,12 +6,30 @@ class TicketController < ApplicationController
   end
 
   def index
-    tickets = Ticket.all
-    render "index.slang"
+    if (current_user = context.current_user)
+      if current_user.role == 2
+        tickets = Ticket.all
+        render "index.slang"
+      else
+        # tickets = Ticket.all
+        tickets = Ticket.where(user_id: current_user.id)
+        render "index.slang"
+      end
+    end
   end
 
   def show
-    render "show.slang"
+    if (current_user = context.current_user)
+      if current_user.role == 2
+        render "show.slang"
+      elsif ticket.user_id == current_user.id
+        render "show.slang"
+      else
+        context.flash[:warning] = "Ticket Not Found"
+        context.response.headers.add "Location", "/"
+        context.response.status_code = 302
+      end
+    end
   end
 
   def new
@@ -19,7 +37,17 @@ class TicketController < ApplicationController
   end
 
   def edit
-    render "edit.slang"
+    if (current_user = context.current_user)
+      if current_user.role == 2
+        render "edit.slang"
+      elsif ticket.user_id == current_user.id
+        render "edit.slang"
+      else
+        context.flash[:warning] = "Ticket Not Found"
+        context.response.headers.add "Location", "/"
+        context.response.status_code = 302
+      end
+    end
   end
 
   def create

@@ -16,7 +16,9 @@
       - tickets.each do |ticket|
         tr
           td = ticket.title
-          td #{ticket.user.name}, #{ticket.user.company}
+          td
+           a
+             == link_to("#{ticket.user.name} - #{ticket.user.company}", "/users/#{ticket.user.id}")
           td
            span class="tag tag-st#{ticket.solved}"
             - if ticket.solved == 0

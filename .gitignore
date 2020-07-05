@@ -12,3 +12,4 @@ production.yml
 /node_modules
 /public/dist
 db/*.db
+*.org

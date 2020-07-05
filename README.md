@@ -4,6 +4,12 @@
 
 This is a simple ticketing application meant for use with customers to communicate issues with whomever is admin for the site. The main goal for this application is to be lightweight and to be fast to both deploy and run.
 
+Users when joining need to be approved by an admin before being able to do anything, the reason for this is to prevent spam and to prevent people making multiple accounts for whatever reason.
+
+There's an admin view and a user view where users can only see their tickets and create new ones, while admins can see all users and all tickets.
+
+No email support currently, mailers are still WIP.
+
 ## Getting Started
 
 These instructions will get a copy of this project running on your machine for development and testing purposes.
@@ -39,7 +45,7 @@ crystal spec
 
 ## Contributing
 
-1. Fork it ( https://github.com/your-github-user/amber-ticket-app/fork )
+1. Fork it ( https://git.materialfuture.net/MaterialFuture/ticketing-app )
 2. Create your feature branch ( `git checkout -b my-new-feature` )
 3. Commit your changes ( `git commit -am 'Add some feature'` )
 4. Push to the branch ( `git push origin my-new-feature` )

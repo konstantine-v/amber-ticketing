@@ -18,5 +18,5 @@ h1 Edit Profile
     input.form-control required="true" type="text" name="phone" placeholder="Phone Number" value="#{user.phone}"
   br
   .form-group
-    input.form-control required="true" type="password" name="password" placeholder="Your New password"
+    input.form-control type="password" name="password" placeholder="Your New password"
   == submit("Update", class: "btn btn-success btn-sm")

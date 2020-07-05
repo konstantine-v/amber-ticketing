@@ -7,15 +7,15 @@ h1 Sign Up
 form action="/registration" method="post"
   == csrf_tag
   .form-group
-    input.form-control type="email" name="email" placeholder="Your Company Email"
+    input.form-control required="true" type="email" name="email" placeholder="Your Company Email"
   .form-group
-    input.form-control type="text" name="name" placeholder="Your Name"
+    input.form-control required="true" type="text" name="name" placeholder="Your Name"
   .form-group
-    input.form-control type="phone" name="phone" placeholder="Phone Number"
+    input.form-control required="true" type="phone" name="phone" placeholder="Phone Number"
   .form-group
-    input.form-control type="text" name="company" placeholder="Company Name"
+    input.form-control required="true" type="text" name="company" placeholder="Company Name"
   .form-group
-    input.form-control type="password" name="password" placeholder="Password"
+    input.form-control required="true" type="password" name="password" placeholder="Password"
   button.btn.btn-success.btn-sm type="submit"
     | Register
 <hr/>

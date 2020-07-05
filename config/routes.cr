@@ -44,6 +44,7 @@ Amber::Server.configure do
     post "/session", SessionController, :create
     get "/signup", UserController, :new
     post "/registration", UserController, :create
+    get "/signout", SessionController, :delete
   end
 
   routes :admin do
@@ -54,7 +55,6 @@ Amber::Server.configure do
     get "/profile", ProfileController, :show
     get "/profile/edit", ProfileController, :edit
     patch "/profile", ProfileController, :update
-    get "/signout", SessionController, :delete
 
     resources "tickets", TicketController
   end

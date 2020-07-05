@@ -39,8 +39,6 @@ class UserController < ApplicationController
 
   def update
     user.set_attributes user_params.validate!
-    pass = user_params.validate!["password"]
-    user.password = pass if pass
     if user.save
       redirect_to action: :index, flash: {"success" => "User has been updated."}
     else
@@ -51,15 +49,15 @@ class UserController < ApplicationController
 
   def destroy
     user.destroy
-    redirect_to "/", flash: {"success" => "User has been deleted."}
+    redirect_to action: :index, flash: {"success" => "User has been deleted."}
   end
 
   private def user_params
     params.validation do
       required :email
-      required :password
       required :name
       required :company
+      optional :password
       optional :approved
       optional :role
       optional :phone

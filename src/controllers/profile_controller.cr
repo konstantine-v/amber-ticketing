@@ -40,8 +40,6 @@ class ProfileController < ApplicationController
 
   def update
     user.set_attributes user_params.validate!
-    pass = user_params.validate!["password"]
-    user.password = pass if pass
     if user.save
       redirect_to action: :show, flash: {"success" => "User has been updated."}
     else
@@ -58,9 +56,9 @@ class ProfileController < ApplicationController
   private def user_params
     params.validation do
       required :email
-      required :password
       required :name
       required :company
+      optional :password
       optional :approved
       optional :role
       optional :phone

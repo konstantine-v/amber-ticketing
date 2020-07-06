@@ -1,5 +1,6 @@
- h2 Tickets
-a.btn.btn-success.btn-sm href="/tickets/new" New Ticket
+h2 Tickets
+p
+ a.btn.btn-success.btn-sm href="/tickets/new" New Ticket
 .table-responsive
   table.table.table-striped
     thead

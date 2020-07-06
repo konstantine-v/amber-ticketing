@@ -2,28 +2,32 @@ class TicketCommentController < ApplicationController
   getter ticket_comment = TicketComment.new
 
   before_action do
-    only [:show, :edit, :update, :destroy] { set_ticket_comment }
+    only [:update, :destroy] { set_ticket_comment }
   end
 
   def index
-    ticket_comments = TicketComment.all
+    comments = TicketComment.all
     render "index.slang"
   end
 
   def create
-    ticket_comment = TicketComment.new ticket_comment_params.validate!
-    if ticket_comment.save
-      redirect_to action: :index, flash: {"success" => "Ticket_comment has been created."}
+    comment = TicketComment.new ticket_comment_params.validate!
+    if (current_user = context.current_user)
+      comment.user_id = current_user.id
+      ticket_id = context.request.path.to_s.gsub("/comments/","").gsub("/new","").chomp.to_i64
+      comment.ticket_id = ticket_id
+    end
+    if comment.save
+      redirect_to "/tickets/#{ticket_id}", flash: {"success" => "Comment has been created."}
     else
-      flash[:danger] = "Could not create TicketComment!"
-      render "new.slang"
+      redirect_to "/tickets/#{ticket_id}", flash: {"danger" => "Comment could not be created."}
     end
   end
 
   def update
     ticket_comment.set_attributes ticket_comment_params.validate!
     if ticket_comment.save
-      redirect_to action: :index, flash: {"success" => "Ticket_comment has been updated."}
+      redirect_to action: :index, flash: {"success" => "Comment has been updated."}
     else
       flash[:danger] = "Could not update TicketComment!"
       render "edit.slang"
@@ -32,7 +36,8 @@ class TicketCommentController < ApplicationController
 
   def destroy
     ticket_comment.destroy
-    redirect_to action: :index, flash: {"success" => "Ticket_comment has been deleted."}
+    ticket_id = ticket_comment.ticket_id
+    redirect_to "/tickets/#{ticket_id}", flash: {"success" => "Comment has been deleted."}
   end
 
   private def ticket_comment_params

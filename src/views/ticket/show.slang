@@ -8,6 +8,12 @@ span class="tag tag-st#{ticket.solved}"
    | Status: Resolved
 - if ticket.urgency != 0
   span class="tag tag-lvl#{ticket.urgency}" Urgency: Level #{ticket.urgency}
+hr
+p
+  == link_to("Back", "/tickets", class: "btn btn-light btn-sm")
+  == link_to("Edit", "/tickets/#{ticket.id}/edit", class: "btn btn-success btn-sm")
+  == link_to("Delete", "/tickets/#{ticket.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
+hr
 h2.mt-3 = ticket.title
 p = ticket.desc
 hr
@@ -15,24 +21,27 @@ h4 Ticket Created By
 p = ticket.user.name
 p = ticket.user.company
 p = ticket.user.phone
-hr
-p
- | Date Created:
- = ticket.created_at.not_nil!
-p
- | Last Updated:
- = ticket.updated_at.not_nil!
-p
-  == link_to("Back", "/tickets", class: "btn btn-light btn-sm")
-  == link_to("Edit", "/tickets/#{ticket.id}/edit", class: "btn btn-success btn-sm")
-  == link_to("Delete", "/tickets/#{ticket.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
+
+- if (current_user = context.current_user)
+  - if current_user.role == 2
+    hr
+    p
+     | Date Created:
+     = ticket.created_at.not_nil!
+    p
+     | Last Updated:
+     = ticket.updated_at.not_nil!
 hr
 h2 Comments
 hr
-== form(action: "/comments/#{comment.id.to_s}/comment", method: comment.id ? :patch : :post) do
+- if comment.errors
+  ul.errors
+    - comment.errors.each do |error|
+      li = error.to_s
+== form(action: "/comments/#{ticket.id}/new", method: comment.id ? :patch : :post) do
   == csrf_tag
   .form-group
-    == text_field(name: "body", value: comment.body, placeholder: "Your Comment", class: "form-control")
+    == text_area(name: "body", content: comment.body, placeholder: "Your Comment", class: "form-control")
   == submit("Submit Comment", class: "btn btn-success btn-sm")
 
 - comments.each do |comment|
@@ -44,7 +53,7 @@ hr
      i.tag.tag-blu Admin
     i #{comment.user.name} - #{comment.user.company}
    p
-     == link_to("Delete", "/tickets/#{comment.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
+     == link_to("Delete", "/comments/#{comment.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
 css:
   .tag {color: white; padding: 4px 11px; margin:0 .5rem 0 0; border-radius: .5rem;}
   .tag-blu {background:cornflowerblue}

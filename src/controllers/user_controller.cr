@@ -11,6 +11,7 @@ class UserController < ApplicationController
   end
 
   def show
+    tickets = Ticket.where(user_id: user.id)
     render "show.slang"
   end
 

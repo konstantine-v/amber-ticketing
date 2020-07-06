@@ -58,7 +58,8 @@ Amber::Server.configure do
 
     resources "tickets", TicketController
 
-    post "/tickets/:id/comment", TicketCommentController, :update
+    post "/comments/:id/new", TicketCommentController, :create
+    delete "/comments/:id", TicketCommentController, :destroy
   end
 
   routes :static do

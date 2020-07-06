@@ -11,6 +11,7 @@ class User < Granite::Base
   column role : Int32?
   column name : String?
   column phone : String?
+  column about : String?
   column company : String?
   column approved : Int32?
 
@@ -30,10 +31,6 @@ class User < Granite::Base
 
   validate :approved, "is required", ->(user : User) do
     (approved = user.approved) ? !approved.nil? : false
-  end
-
-  validate :email, "is required", ->(user : User) do
-    (email = user.email) ? !email.empty? : false
   end
 
   validate :email, "is required", ->(user : User) do

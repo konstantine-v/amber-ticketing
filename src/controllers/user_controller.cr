@@ -61,6 +61,7 @@ class UserController < ApplicationController
       optional :approved
       optional :role
       optional :phone
+      optional :about
     end
   end
 

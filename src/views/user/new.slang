@@ -1,5 +1,9 @@
 h1 Sign Up
-p Please note that after creating an account you'll have to wait for your account to be approved.
+p style="color:red"
+ i Please note that after creating an account you'll have to wait for your account to be approved.
+ i You won't be able to do anything on the site until being approved.
+p style="color:red"
+ i Please understand, this is to reduce spam on the site.
 - if user
   - if user.errors
     ul.errors

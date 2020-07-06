@@ -10,6 +10,8 @@ There's an admin view and a user view where users can only see their tickets and
 
 No email support currently, mailers are still WIP.
 
+If you want to help, feel free to make a PR and help out with this. If you do help out I will add you in the list of contributors.
+
 ## Getting Started
 
 These instructions will get a copy of this project running on your machine for development and testing purposes.
@@ -56,19 +58,13 @@ crystal spec
 - [@materialfuture](https://git.materialfuture.net/MaterialFuture) Konstantine - creator, maintainer
 
 ## Goals
-- Custom CSS (No Framework)
-- Restrict views based on roles
-- Tie tickets to users
-- Add active tickets to accounts
-- Separate views for tickets
-  - All tickets - admin
-  - All Active tickets - admin
-  - All Completed Tickets - admin
-  - current_user tickets
+- Minimal CSS
+- Very minimal JavaScript
+- Restrict views based on roles (ie admin, user, potential others)
 - Users must be approved by admin
-  - User signs up
-  - Admin gets email of new user
-  - Admin sees on dashboard the list of unapproved users and can take actions
+  1. User signs up
+  2. Admin gets email of new user
+  3. Admin sees on dashboard the list of unapproved users and can take actions
 - Email system to let admins and users get updates on their tickets
   - Emails on ticket status updates along with new comments
 - Ticket features

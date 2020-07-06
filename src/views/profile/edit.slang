@@ -16,6 +16,8 @@ h1 Edit Profile
     input.form-control required="true" type="text" name="company" placeholder="Company Name" value="#{user.company}"
   .form-group
     input.form-control required="true" type="text" name="phone" placeholder="Phone Number" value="#{user.phone}"
+  .form-group
+    textarea.form-control type="text" name="about" placeholder="Description about you or company" value="#{user.about}"
   br
   .form-group
     input.form-control type="password" name="password" placeholder="Your New password"

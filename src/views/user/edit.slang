@@ -15,7 +15,7 @@ h1 Edit Profile
   .form-group
     input.form-control required="true" type="text" name="phone" placeholder="Phone Number" value="#{user.phone}"
   .form-group
-    input.form-control type="text" name="about" placeholder="Description about you or company" value="#{user.about}"
+    textarea.form-control type="text" name="about" placeholder="Description about you or company" value="#{user.about}"
   .form-group
     label Approved?
     == select_field(name: "approved", collection: [[0, "Not Approved"], [1, "Approved"]], selected: user.approved)

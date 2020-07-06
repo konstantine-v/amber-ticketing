@@ -1,4 +1,5 @@
 h1 Sign Up
+p Please note that after creating an account you'll have to wait for your account to be approved.
 - if user
   - if user.errors
     ul.errors
@@ -15,8 +16,10 @@ form action="/registration" method="post"
   .form-group
     input.form-control required="true" type="text" name="company" placeholder="Company Name"
   .form-group
+    input.form-control type="text" name="about" placeholder="Description about you or company" value="#{user.about}"
+  .form-group
     input.form-control required="true" type="password" name="password" placeholder="Password"
   button.btn.btn-success.btn-sm type="submit"
     | Register
-<hr/>
+hr
 == link_to("Already have an account?", "/signin")

@@ -6,9 +6,11 @@
 == form(action: "/tickets/#{ticket.id.to_s}", method: ticket.id ? :patch : :post) do
   == csrf_tag
   .form-group
-    == text_field(name: "title", value: ticket.title, placeholder: "Title", class: "form-control")
+    == text_field(name: "title", required: true, value: ticket.title, placeholder: "Title", class: "form-control")
   .form-group
-    == text_area(name: "desc", content: ticket.desc, placeholder: "Desc", class: "form-control", size: "30x10")
+    == text_field(name: "url", value: ticket.url, placeholder: "Link to problem", class: "form-control")
+  .form-group
+    == text_area(name: "desc", required: true, content: ticket.desc, placeholder: "Write out the description of your issues. Please make sure to be thorough in describing your issue.", class: "form-control", size: "30x10")
   .form-group
     label Status
     == select_field(name: "solved", collection: [[0, "Waiting"], [1, "In Progress"], [2, "Resolved"]], selected: ticket.solved)

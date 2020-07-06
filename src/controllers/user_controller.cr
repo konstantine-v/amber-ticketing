@@ -30,7 +30,7 @@ class UserController < ApplicationController
     user.approved = 0
     if user.save
       session[:user_id] = user.id
-      redirect_to "/", flash: {"success" => "Created User successfully."}
+      redirect_to "/", flash: {"success" => "Created User successfully. Please wait for an Admin to approve your account."}
     else
       flash[:danger] = "Could not create User!"
       render "new.slang"

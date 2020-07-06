@@ -1,8 +1,5 @@
-.row
-  .col-sm-11
-    h2 Tickets
-  .col-sm-1
-    a.btn.btn-success.btn-sm href="/tickets/new" New
+ h2 Tickets
+a.btn.btn-success.btn-sm href="/tickets/new" New Ticket
 .table-responsive
   table.table.table-striped
     thead

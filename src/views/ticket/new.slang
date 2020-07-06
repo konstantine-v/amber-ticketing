@@ -8,6 +8,8 @@ h1 New Ticket
   .form-group
     == text_field(name: "title", required: true, value: ticket.title, placeholder: "Title", class: "form-control")
   .form-group
+    == text_field(name: "url", value: ticket.url, placeholder: "Link to problem", class: "form-control")
+  .form-group
     == text_area(name: "desc", required: true, content: ticket.desc, placeholder: "Desc", class: "form-control", size: "30x10")
   .form-group
     label Urgency

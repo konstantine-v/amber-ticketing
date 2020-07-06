@@ -7,13 +7,15 @@ h1 Edit Profile
 == form(action: "/users/#{user.id}", method: :patch) do
   == csrf_tag
   .form-group
-    input.form-control type="email" name="email" placeholder="Email" value="#{user.email}"
+    input.form-control required="true" type="email" name="email" placeholder="Email" value="#{user.email}"
   .form-group
-    input.form-control required="true" type="text" name="name" placeholder="Name" value="#{user.name}"
+    input.form-control required="true" type="text" name="name" placeholder="Full Name" value="#{user.name}"
   .form-group
     input.form-control required="true" type="text" name="company" placeholder="Company Name" value="#{user.company}"
   .form-group
     input.form-control required="true" type="text" name="phone" placeholder="Phone Number" value="#{user.phone}"
+  .form-group
+    input.form-control type="text" name="about" placeholder="Description about you or company" value="#{user.about}"
   .form-group
     label Approved?
     == select_field(name: "approved", collection: [[0, "Not Approved"], [1, "Approved"]], selected: user.approved)

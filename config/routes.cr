@@ -57,6 +57,8 @@ Amber::Server.configure do
     patch "/profile", ProfileController, :update
 
     resources "tickets", TicketController
+
+    post "/tickets/:id/comment", TicketCommentController, :update
   end
 
   routes :static do

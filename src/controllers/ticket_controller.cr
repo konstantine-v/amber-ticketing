@@ -1,5 +1,6 @@
 class TicketController < ApplicationController
   getter ticket = Ticket.new
+  getter comment = TicketComment.new
 
   before_action do
     only [:show, :edit, :update, :destroy] { set_ticket }
@@ -11,7 +12,6 @@ class TicketController < ApplicationController
         tickets = Ticket.order(solved: :asc, created_at: :desc)
         render "index.slang"
       else
-        # tickets = Ticket.all
         tickets = Ticket.where(user_id: current_user.id)
         render "index.slang"
       end
@@ -21,8 +21,10 @@ class TicketController < ApplicationController
   def show
     if (current_user = context.current_user)
       if current_user.role == 2
+        comments = TicketComment.where(ticket_id: ticket.id)
         render "show.slang"
       elsif ticket.user_id == current_user.id
+        comments = TicketComment.where(ticket_id: ticket.id)
         render "show.slang"
       else
         context.flash[:warning] = "Ticket Not Found"
@@ -81,11 +83,12 @@ class TicketController < ApplicationController
 
   private def ticket_params
     params.validation do
-      required(:title){|f| !f.nil? && !f.empty? }
-      required(:desc){|f| !f.nil? && !f.empty? }
-      required(:urgency){|f| !f.nil? && !f.empty? }
-      optional :solved
+      required :title
+      required :desc
+      required :urgency
       optional :user_id
+      optional :url
+      optional :solved
     end
   end
 

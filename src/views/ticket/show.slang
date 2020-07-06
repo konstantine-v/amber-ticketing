@@ -52,8 +52,9 @@ hr
     - if comment.user.role == 2
      i.tag.tag-blu Admin
     i #{comment.user.name} - #{comment.user.company}
-   p
-     == link_to("Delete", "/comments/#{comment.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
+   - if comment.user.role == 2
+    p
+      == link_to("Delete", "/comments/#{comment.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
 css:
   .tag {color: white; padding: 4px 11px; margin:0 .5rem 0 0; border-radius: .5rem;}
   .tag-blu {background:cornflowerblue}

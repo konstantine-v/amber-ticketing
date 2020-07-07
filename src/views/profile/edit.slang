@@ -1,11 +1,11 @@
+button
+ == link_to("Back To Profile", "/profile", class: "btn btn-light btn-sm p-1 mb-3")
+hr
 h1 Edit Profile
-
 - if user.errors
   ul.errors
   - user.errors.each do |error|
     li = error.to_s
-button
- == link_to("Back To Profile", "/profile", class: "btn btn-light btn-sm p-1 mb-3")
 == form(action: "/profile", method: :patch) do
   == csrf_tag
   .form-group
@@ -21,5 +21,4 @@ button
   br
   .form-group
     input.form-control type="password" name="password" placeholder="Your New password"
-  button
-   == submit("Update", class: "btn btn-success btn-sm")
+  == submit("Update", class: "btn btn-success btn-sm")

@@ -7,5 +7,6 @@ th style="text-align:right"
  - else
    - active = context.request.path == "/signin" ? "active" : ""
    a.nav-link href="/signin" Sign In
+   span | |
    - active = context.request.path == "/signup" ? "active" : ""
    a.nav-link href="/signup" Sign Up

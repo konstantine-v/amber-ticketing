@@ -1,8 +1,9 @@
-h2 Tickets
-button
- a.btn.btn-success.btn-sm href="/tickets/new" New Ticket
-.table-responsive
-  table.table.table-striped
+button.success
+ a href="/tickets/new" New Ticket
+hr
+h1 Tickets
+div
+  table
     thead
       tr
         th Title
@@ -31,16 +32,8 @@ button
              span class="tag tag-lvl#{ticket.urgency}" = ticket.urgency
           td
             button
-              == link_to("Show", "/tickets/#{ticket.id}", class: "btn btn-info btn-sm")
+              == link_to("Show", "/tickets/#{ticket.id}")
             button
-              == link_to("Edit", "/tickets/#{ticket.id}/edit", class: "btn btn-success btn-sm")
-            button
-              == link_to("Delete", "/tickets/#{ ticket.id }?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
-css:
-  .tag-blu {background:cornflowerblue}
-  .tag-orn {background:coral}
-  .tag-st0 {background:grey}
-  .tag-st1 {background:coral}
-  .tag-st2 {background:cornflowerblue}
-  .tag-lvl1 {background:coral}
-  .tag-lvl2 {background:crimson}
+              == link_to("Edit", "/tickets/#{ticket.id}/edit")
+            button.danger
+              == link_to("Delete", "/tickets/#{ ticket.id }?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?")

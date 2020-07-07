@@ -13,3 +13,5 @@ production.yml
 /public/dist
 db/*.db
 *.org
+/public/logo.svg
+/public/dark.min.css

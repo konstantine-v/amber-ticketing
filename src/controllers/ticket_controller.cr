@@ -56,6 +56,7 @@ class TicketController < ApplicationController
     if (current_user = context.current_user)
       ticket.user_id = current_user.id
     end
+    ticket.solved = 0
     if ticket.save
       redirect_to action: :index, flash: {"success" => "Ticket has been created."}
     else

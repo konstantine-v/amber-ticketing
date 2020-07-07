@@ -8,7 +8,11 @@ Users when joining need to be approved by an admin before being able to do anyth
 
 There's an admin view and a user view where users can only see their tickets and create new ones, while admins can see all users and all tickets.
 
+*Please Note:*
+
 No email support currently, mailers are still WIP.
+
+Delete action doesn't work currently, working on a fix right now.
 
 If you want to help, feel free to make a PR and help out with this. If you do help out I will add you in the list of contributors.
 

@@ -3,7 +3,8 @@ h1 Edit Profile
   ul.errors
   - user.errors.each do |error|
     li = error.to_s
-== link_to("Back To Profile", "/users/#{user.id}", class: "btn btn-light btn-sm p-1 mb-3")
+button
+ == link_to("Back To Profile", "/users/#{user.id}", class: "btn btn-light btn-sm p-1 mb-3")
 == form(action: "/users/#{user.id}", method: :patch) do
   == csrf_tag
   .form-group

@@ -1,4 +1,12 @@
-h1 Ticket ##{ticket.id.to_s}
+p
+ button
+  == link_to("Back", "/tickets", class: "btn btn-light btn-sm")
+ button
+  == link_to("Edit", "/tickets/#{ticket.id}/edit", class: "btn btn-success btn-sm")
+ button
+  == link_to("Delete", "/tickets/#{ticket.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
+hr
+h1 = ticket.title
 span class="tag tag-st#{ticket.solved}"
  - if ticket.solved == 0
    | Status: Waiting
@@ -8,32 +16,28 @@ span class="tag tag-st#{ticket.solved}"
    | Status: Resolved
 - if ticket.urgency != 0
   span class="tag tag-lvl#{ticket.urgency}" Urgency: Level #{ticket.urgency}
-hr
-p
-  == link_to("Back", "/tickets", class: "btn btn-light btn-sm")
-  == link_to("Edit", "/tickets/#{ticket.id}/edit", class: "btn btn-success btn-sm")
-  == link_to("Delete", "/tickets/#{ticket.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
-hr
-h2.mt-3 = ticket.title
+h3 Description:
 p = ticket.desc
-hr
-h4 Ticket Created By
-p = ticket.user.name
-p = ticket.user.company
-p = ticket.user.phone
-
+p
+ b URL to issue:
+ a href="#{ticket.url}" = ticket.url
 - if (current_user = context.current_user)
   - if current_user.role == 2
-    hr
+   p
+    b Ticket Created By:
+    a href="/users/#{ticket.user.id}"
+     = ticket.user.name
+     | -
+     = ticket.user.company
     p
-     | Date Created:
-     = ticket.created_at.not_nil!
+     b Date Created:
+     = ticket.created_at.not_nil!.to_local.to_s("%Y-%m-%d %H:%M")
+
     p
-     | Last Updated:
-     = ticket.updated_at.not_nil!
+     b Last Updated:
+     = ticket.updated_at.not_nil!.to_local.to_s("%Y-%m-%d %H:%M")
 hr
 h2 Comments
-hr
 - if comment.errors
   ul.errors
     - comment.errors.each do |error|
@@ -43,25 +47,24 @@ hr
   .form-group
     == text_area(name: "body", content: comment.body, placeholder: "Your Comment", class: "form-control")
   == submit("Submit Comment", class: "btn btn-success btn-sm")
-
+hr
+br
 - comments.each do |comment|
-  hr
   div.comment-blob
    p = comment.body
    p
     - if comment.user.role == 2
-     i.tag.tag-blu Admin
+     i.tag.tag-st2 Admin
     i #{comment.user.name} - #{comment.user.company}
-   - if comment.user.role == 2
-    p
-      == link_to("Delete", "/comments/#{comment.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
+    - if (current_user = context.current_user)
+      - if current_user.id == comment.user.id
+        button
+         == link_to("Delete", "/comments/#{comment.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
+  br
 css:
-  .tag {color: white; padding: 4px 11px; margin:0 .5rem 0 0; border-radius: .5rem;}
-  .tag-blu {background:cornflowerblue}
-  .tag-orn {background:coral}
   .tag-st0 {background:grey}
   .tag-st1 {background:coral}
   .tag-st2 {background:cornflowerblue}
   .tag-lvl1 {background:coral}
   .tag-lvl2 {background:crimson}
-  .comment-blob {border: 1px solid black; padding: 1rem 1rem 0 1rem; border-radius: .5em;}
+  .comment-blob {background:#2b3e4e;padding:1px 1rem 1px 1rem;border-radius:.5em;margin-bottom:1rem}

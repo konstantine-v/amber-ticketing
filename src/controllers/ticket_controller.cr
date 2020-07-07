@@ -19,12 +19,11 @@ class TicketController < ApplicationController
   end
 
   def show
+    comments = TicketComment.where(ticket_id: ticket.id).order(created_at: :desc)
     if (current_user = context.current_user)
       if current_user.role == 2
-        comments = TicketComment.where(ticket_id: ticket.id)
         render "show.slang"
       elsif ticket.user_id == current_user.id
-        comments = TicketComment.where(ticket_id: ticket.id)
         render "show.slang"
       else
         context.flash[:warning] = "Ticket Not Found"
@@ -57,7 +56,6 @@ class TicketController < ApplicationController
     if (current_user = context.current_user)
       ticket.user_id = current_user.id
     end
-    ticket.solved = 0 #change from solved to status
     if ticket.save
       redirect_to action: :index, flash: {"success" => "Ticket has been created."}
     else

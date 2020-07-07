@@ -1,5 +1,5 @@
 h2 Tickets
-p
+button
  a.btn.btn-success.btn-sm href="/tickets/new" New Ticket
 .table-responsive
   table.table.table-striped
@@ -13,10 +13,10 @@ p
     tbody
       - tickets.each do |ticket|
         tr
-          td = ticket.title
           td
-           a
-             == link_to("#{ticket.user.name} - #{ticket.user.company}", "/users/#{ticket.user.id}")
+           == link_to("#{ticket.title}", "/tickets/#{ticket.id}")
+          td
+           == link_to("#{ticket.user.name} - #{ticket.user.company}", "/users/#{ticket.user.id}")
           td
            span class="tag tag-st#{ticket.solved}"
             - if ticket.solved == 0
@@ -28,14 +28,15 @@ p
           td
            - if ticket.solved != 2
             - if ticket.urgency != 0
-             span class="tag tag-lvl#{ticket.urgency}" Level #{ticket.urgency}
+             span class="tag tag-lvl#{ticket.urgency}" = ticket.urgency
           td
-            span
+            button
               == link_to("Show", "/tickets/#{ticket.id}", class: "btn btn-info btn-sm")
+            button
               == link_to("Edit", "/tickets/#{ticket.id}/edit", class: "btn btn-success btn-sm")
+            button
               == link_to("Delete", "/tickets/#{ ticket.id }?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?", class: "btn btn-danger btn-sm")
 css:
-  .tag {color: white; padding: 4px 11px; margin:0 .5rem 0 0; border-radius: .5rem;}
   .tag-blu {background:cornflowerblue}
   .tag-orn {background:coral}
   .tag-st0 {background:grey}

@@ -18,6 +18,9 @@ These instructions will get a copy of this project running on your machine for d
 
 Please see [deployment](https://docs.amberframework.org/amber/deployment) for notes on deploying the project in production.
 
+Add your logo to `public/logo.svg`
+
+Add whatever CSS to `public/` and change the reference in `src/views/layouts/application.slang`
 ## Prerequisites
 
 This project requires [Crystal](https://crystal-lang.org/) ([installation guide](https://crystal-lang.org/docs/installation/)).

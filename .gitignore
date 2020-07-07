@@ -14,4 +14,4 @@ production.yml
 db/*.db
 *.org
 /public/logo.svg
-/public/dark.min.css
+/public/css/dark.min.css

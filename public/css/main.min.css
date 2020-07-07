@@ -1,0 +1,20 @@
+.tag{color:white;padding:4px 11px;margin:0 .5rem 0 0;border-radius:.5rem}
+.alert{padding:1rem;border-radius:.5em;margin-bottom:1rem}
+.alert-success{background:#158a2b}
+.alert-info{background:#158a2b}
+.alert-danger{background:crimson}
+.mini-alert{padding:.5rem;border-radius:.5em;margin-bottom:1rem;max-width:300px}
+.tag-blu{background:cornflowerblue}
+.tag-orn{background:coral}
+.tag-st0{background:grey}
+.tag-st1{background:coral}
+.tag-st2{background:cornflowerblue}
+.tag-lvl1{background:coral}
+.tag-lvl2{background:crimson}
+.tag-ap0{background:coral}
+.tag-ap1{background:cornflowerblue}
+button{background-color:#41adff}
+button a{color:white}
+button.success{background-color:green}
+button.danger{background-color:crimson}
+button.info,button.danger,button.success{transition:background-color .1s linear,border-color .1s linear,color .1s linear,box-shadow .1s linear,transform .1s ease;}

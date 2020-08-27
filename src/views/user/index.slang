@@ -25,7 +25,3 @@ table
             button Show
           a href="/users/#{user.id}/edit"
             button Edit
-          - if user.role != 2
-           form action="/users/#{user.id}?_csrf=#{csrf_token}" method="DELETE"
-            == csrf_tag
-            button.danger  type="submit" onclick="return confirm('Are you sure?');" Delete

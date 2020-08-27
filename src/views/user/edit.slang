@@ -1,5 +1,5 @@
-button
- == link_to("Back To Profile", "/users/#{user.id}", class: "btn btn-light btn-sm p-1 mb-3")
+a href="/users/new"
+  button.normal Back To Profile
 hr
 h1 Edit Profile
 - if user.errors

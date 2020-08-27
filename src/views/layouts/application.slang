@@ -19,7 +19,7 @@ html
      tr
       th
        a.navbar-brand href="/"
-        img src="/logo.svg" height="30" alt="Amber logo"
+        img src="/logo.svg" height="30" alt="Company Logo"
       th
         == render(partial: "layouts/_nav.slang")
       th

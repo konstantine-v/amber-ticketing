@@ -1,7 +1,7 @@
-button
-  == link_to("Back To Users", "/users/", class: "btn btn-success btn-sm")
-button
-  == link_to("Edit Account", "/users/#{user.id}/edit", class: "btn btn-success btn-sm")
+a href="/users"
+  button.normal Back To Users
+a href="/users/new"
+  button Edit Account
 hr
 h1 Profile
 p = user.name

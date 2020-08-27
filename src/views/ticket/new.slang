@@ -1,5 +1,5 @@
-button
- == link_to("Back To Tickets", "/tickets")
+a href="/tickets"
+  button.normal Back To Tickets
 hr
 h1 New Ticket
 - if ticket.errors

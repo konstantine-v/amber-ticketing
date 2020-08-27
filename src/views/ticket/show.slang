@@ -1,7 +1,7 @@
-button
- == link_to("Back To Tickets", "/tickets")
-button
- == link_to("Edit Ticket", "/tickets/#{ticket.id}/edit")
+a href="/tickets"
+  button.normal Back To Tickets
+a href="/tickets/#{ticket.id}/edit"
+  button Edit Tickets
 hr
 h1 = ticket.title
 span class="tag tag-st#{ticket.solved}"

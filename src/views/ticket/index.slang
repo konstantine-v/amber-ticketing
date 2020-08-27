@@ -1,5 +1,5 @@
-button.success
- a href="/tickets/new" New Ticket
+a href="/tickets/new"
+  button.success New Ticket
 hr
 h1 Tickets
 div
@@ -33,7 +33,7 @@ div
             - if ticket.urgency != 0
              span class="tag tag-lvl#{ticket.urgency}" = ticket.urgency
           td
-            button
-              == link_to("Show", "/tickets/#{ticket.id}")
-            button
-              == link_to("Edit", "/tickets/#{ticket.id}/edit")
+            a href="/tickets/#{ticket.id}"
+              button Show
+            a href="/tickets/#{ticket.id}/edit"
+              button Edit

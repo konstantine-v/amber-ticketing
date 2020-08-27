@@ -14,9 +14,9 @@
 .tag-lvl2{background:crimson}
 .tag-ap0{background:coral}
 .tag-ap1{background:cornflowerblue}
-button,input[type=submit]{background-color:#41adff}
+button,input[type=submit]{background-color:#41adff;margin-top:1em}
 button a{color:white}
 button.success{background-color:green}
+button.normal{background-color:grey}
 button.danger{background-color:crimson}
 button.info,button.danger,button.success{transition:background-color .1s linear,border-color .1s linear,color .1s linear,box-shadow .1s linear,transform .1s ease;}
-textarea{width:500px}

@@ -3,9 +3,13 @@ button
 hr
 h1 Edit Profile
 - if user.errors
- div class="mini-alert alert-danger" role="alert"
+ - user.errors.each do |error|
+  div class="mini-alert alert-danger" role="alert"
+   = error.to_s
+- if user.errors
   - user.errors.each do |error|
-    li = error.to_s
+   div.mini-alert.alert-danger role="alert"
+    = error.to_s
 == form(action: "/users/#{user.id}", method: :patch) do
   == csrf_tag
   input.form-control required="true" type="email" name="email" placeholder="Email" value="#{user.email}"
@@ -13,6 +17,7 @@ h1 Edit Profile
   == text_field(name: "company", required: true, value: user.company, placeholder: "Company Name")
   input.form-control required="true" type="text" name="phone" placeholder="Phone Number" value="#{user.phone}"
   textarea.form-control type="text" name="about" placeholder="Description about you or company" value="#{user.about}"
-  label Approved?
+  p Is user approved?
   == select_field(name: "approved", collection: [[0, "Not Approved"], [1, "Approved"]], selected: user.approved)
+  br
   == submit("Update")

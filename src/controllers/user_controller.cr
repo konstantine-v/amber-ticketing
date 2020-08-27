@@ -49,8 +49,13 @@ class UserController < ApplicationController
   end
 
   def destroy
-    user.destroy
-    redirect_to action: :index, flash: {"success" => "User has been deleted."}
+    token = {csrf: csrf_tag}.to_json
+    puts token
+    if user.destroy
+      redirect_to action: :index, flash: {"success" => "User has been deleted."}
+    else
+      flash[:danger] = "#{token} - Could not delete User!"
+    end
   end
 
   private def user_params

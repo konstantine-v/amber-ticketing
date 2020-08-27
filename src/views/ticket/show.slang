@@ -2,8 +2,6 @@ button
  == link_to("Back To Tickets", "/tickets")
 button
  == link_to("Edit Ticket", "/tickets/#{ticket.id}/edit")
-button
- == link_to("Delete Ticket", "/tickets/#{ticket.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?")
 hr
 h1 = ticket.title
 span class="tag tag-st#{ticket.solved}"
@@ -13,6 +11,8 @@ span class="tag tag-st#{ticket.solved}"
    | Status: In-Progress
  - if ticket.solved == 2
    | Status: Resolved
+ - if ticket.solved == 3
+   | Status: Closed
 - if ticket.urgency != 0
   span class="tag tag-lvl#{ticket.urgency}" Urgency: Level #{ticket.urgency}
 h3 Description:

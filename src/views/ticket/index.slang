@@ -26,6 +26,8 @@ div
               | In-Progress
             - if ticket.solved == 2
               | Resolved
+            - if ticket.solved == 3
+              | Closed
           td
            - if ticket.solved != 2
             - if ticket.urgency != 0
@@ -35,5 +37,3 @@ div
               == link_to("Show", "/tickets/#{ticket.id}")
             button
               == link_to("Edit", "/tickets/#{ticket.id}/edit")
-            button.danger
-              == link_to("Delete", "/tickets/#{ ticket.id }?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?")

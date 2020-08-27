@@ -12,7 +12,7 @@ h1 Edit Ticket ##{ticket.id.to_s}
   == text_field(name: "url", value: ticket.url, placeholder: "Link to problem")
   == text_area(name: "desc", required: true, content: ticket.desc, placeholder: "Write out the description of your issues. Please make sure to be thorough in describing your issue.", size: "30x10")
   label Status
-  == select_field(name: "solved", collection: [[0, "Waiting"], [1, "In Progress"], [2, "Resolved"]], selected: ticket.solved)
+  == select_field(name: "solved", collection: [[0, "Waiting"], [1, "In Progress"], [2, "Resolved"], [3, "Closed"]], selected: ticket.solved)
   label Urgency
   == select_field(name: "urgency", collection: [[0,"Not Urgent"],[1, "Level 1"], [2, "Level 2"]], selected: ticket.urgency)
   == submit("Submit")

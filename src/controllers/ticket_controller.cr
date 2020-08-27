@@ -76,7 +76,11 @@ class TicketController < ApplicationController
   end
 
   def destroy
-    ticket.destroy
+    if ticket = Ticket.find params["id"]
+      ticket.destroy
+    else
+      flash["warning"] = "Ticket with ID #{params["id"]} Not Found"
+    end
     redirect_to action: :index, flash: {"success" => "Ticket has been deleted."}
   end
 

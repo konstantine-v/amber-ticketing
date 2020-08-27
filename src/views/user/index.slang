@@ -25,5 +25,7 @@ table
             == link_to("Show", "/users/#{user.id}")
           button
             == link_to("Edit", "/users/#{user.id}/edit")
-          button.danger
-            == link_to("Delete", "/users/#{user.id}?_csrf=#{csrf_token}", "data-method": "delete", "data-confirm": "Are you sure?")
+          - if user.role != 2
+           form action="/users/#{user.id}?_csrf=#{csrf_token}" method="DELETE"
+            == csrf_tag
+            button.danger  type="submit" onclick="return confirm('Are you sure?');" Delete
